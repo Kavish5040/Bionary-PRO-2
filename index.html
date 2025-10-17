@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Feedback Form</title>
+  <!-- Google font for a human, friendly look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1: #04c1fa;
+      --card: #ffffff;
+      --muted: #6b8aa8;
+      --accent: #2563eb; /* nicer blue */
+      --accent-2: #1e40af;
+      --glass: rgba(37,99,235,0.06);
+      --radius: 12px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 400px at 10% 10%, rgba(37,99,235,0.04), transparent), var(--bg-1);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      color:#0f1724;
+    }
+
+    .container{
+      width:100%;
+      max-width:540px;
+      background:linear-gradient(180deg, var(--card), #fbfdff);
+      border-radius:var(--radius);
+      padding:28px 28px;
+      box-shadow: 0 10px 30px rgba(20,40,80,0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+      border: 1px solid rgba(26,58,120,0.06);
+    }
+
+    h1{
+      margin:0 0 6px 0;
+      font-size:1.5rem;
+      color:#0b3b66;
+      font-weight:700;
+      letter-spacing: -0.2px;
+    }
+
+    p.lead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:0.95rem;
+      line-height:1.45;
+    }
+
+    label{
+      display:block;
+      margin-bottom:8px;
+      color:#234e6b;
+      font-weight:600;
+      font-size:0.9rem;
+    }
+
+    .row{display:flex;gap:14px;flex-wrap:wrap}
+    .row .half{flex:1 1 48%}
+    @media (max-width:540px){.row .half{flex-basis:100%}}
+
+    input, textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid rgba(30,64,175,0.06);
+      background:linear-gradient(180deg, #fbfdff, #fbfdff);
+      font-size:0.95rem;
+      color:#0b2940;
+      transition:box-shadow .18s ease, border-color .18s ease, transform .08s ease;
+      outline:none;
+    }
+
+    input::placeholder, textarea::placeholder{color:#9ab6d8}
+    input:focus, textarea:focus{
+      box-shadow: 0 8px 20px var(--glass);
+      border-color:var(--accent);
+      transform:translateY(-1px);
+    }
+
+    /* Slightly more left padding for the email input so placeholder sits nicely */
+    #email{padding-left:18px}
+
+    textarea{min-height:120px;resize:vertical}
+
+    .actions{margin-top:8px}
+    button{
+      width:100%;
+      display:inline-block;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      color:#ffffff;
+      padding:12px 14px;
+      border-radius:10px;
+      border:none;
+      font-weight:600;
+      font-size:1rem;
+      cursor:pointer;
+      box-shadow: 0 8px 18px rgba(37,99,235,0.14);
+      transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
+    }
+    button:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(37,99,235,0.12)}
+    button:active{transform:translateY(0)}
+
+    footer{margin-top:14px;color:#89b6db;font-size:0.88rem;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Student Feedback</h1>
+    <p>We'd love to hear from you — tell us what you liked or what we can improve.</p>
+
+    <form id="feedbackForm">
+      <div class="row">
+        <div class="half">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required minlength="2">
+        </div>
+
+        <div class="half">
+          <label for="email">College Email</label>
+          <input type="email" id="email" name="email" placeholder="example@vitstudent.ac.in" required>
+        </div>
+      </div>
+
+      <label for="message">Your Feedback</label>
+      <textarea id="message" name="message" placeholder="Write your feedback here..." required minlength="10"></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+    <footer>Made with ❤️ by Bionary Club Member</footer>
+  </div>
+
+  <script>
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (this.checkValidity()) {
+        alert('Thanks for your feedback! We appreciate your input.');
+        this.reset();
+      } else {
+        // Show browser validation messages
+        this.reportValidity();
+      }
+    });
+  </script>
+</body>
+</html>
